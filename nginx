@@ -41,10 +41,10 @@
 # nginx Linux Standards Base compliant init script.
 #
 # LINK:       https://wiki.debian.org/LSBInitScripts
-# AUTHOR:     Karl Blessing <http://kbeezie.com/debian-ubuntu-nginx-init-script/>
+# IDEAS BY:   Karl Blessing <http://kbeezie.com/debian-ubuntu-nginx-init-script/>
 # AUTHOR:     Richard Fussenegger <richard@fussenegger.info>
-# COPYRIGHT:  © 2013 Richard Fussenegger
-# LICENSE:    http://unlicense.org PD
+# COPYRIGHT:  Copyright (c) 2013 Richard Fussenegger
+# LICENSE:    http://unlicense.org/ PD
 # LINK:       http://richard.fussenegger.info/
 # -----------------------------------------------------------------------------
 
