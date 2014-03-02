@@ -9,6 +9,18 @@ chmod 0755 /etc/init.d/nginx
 chown root:root /etc/init.d/nginx
 ```
 
+## Usage
+You can use it via the `service` command or by directly invoking the shell script in `/etc/init.d`; what you like best. Your shell will have auto-completion for the various keywords that are available, for instance if you type `service nginx re` just hit tab for auto-completion.
+
+```
+service nginx force-reload
+service nginx reload
+service nginx restart
+service nginx start
+service nginx status
+service nginx stop
+```
+
 ## License
 > This is free and unencumbered software released into the public domain.
 
