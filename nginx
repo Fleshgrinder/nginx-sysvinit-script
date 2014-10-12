@@ -84,20 +84,22 @@ PIDFILE="/run/${NAME}.pid"
 # Check return status of EVERY command
 set -e
 
-# Check if ${NAME} is a file and executable, if not assume it's not installed.
-if [ ! -x ${DAEMON} ]; then
-  log_failure_msg ${NAME} "not installed"
+# Check if service is installed and recognized program.
+if ! type "${NAME}" 2>- 1>-
+then
+  log_failure_msg "${NAME}" "not installed"
   exit 1
 fi
 
 # This script is only accessible for root (sudo).
-if [ $(id -u) != 0 ]; then
+if [ "$(id -u)" -ne 0 ]
+then
   log_failure_msg "super user only!"
   exit 1
 fi
 
 # Always check if service is already running.
-RUNNING=$(start-stop-daemon --start --quiet --pidfile ${PIDFILE} --exec ${DAEMON} --test && echo "false" || echo "true")
+RUNNING=$(start-stop-daemon --start --quiet --pidfile "${PIDFILE}" --exec "${DAEMON}" --test && printf false || printf true)
 
 
 # -----------------------------------------------------------------------------
@@ -112,8 +114,9 @@ RUNNING=$(start-stop-daemon --start --quiet --pidfile ${PIDFILE} --exec ${DAEMON
 #   0 - successfully reloaded
 #   1 - reloading failed
 ###
-reload_service() {
-  start-stop-daemon --stop --signal HUP --quiet --pidfile ${PIDFILE} --exec ${DAEMON}
+reload_service()
+{
+  start-stop-daemon --stop --signal HUP --quiet --pidfile "${PIDFILE}" --exec "${DAEMON}"
 }
 
 ###
@@ -123,8 +126,9 @@ reload_service() {
 #   0 - successfully started
 #   1 - starting failed
 ###
-start_service() {
-  start-stop-daemon --start --quiet --pidfile ${PIDFILE} --exec ${DAEMON} -- ${DAEMON_ARGS}
+start_service()
+{
+  start-stop-daemon --start --quiet --pidfile "${PIDFILE}" --exec "${DAEMON}" -- ${DAEMON_ARGS}
 }
 
 ###
@@ -134,8 +138,9 @@ start_service() {
 #   0 - successfully stopped
 #   1 - stopping failed
 ###
-stop_service() {
-  start-stop-daemon --stop --quiet --pidfile ${PIDFILE} --name ${NAME}
+stop_service()
+{
+  start-stop-daemon --stop --quiet --pidfile "${PIDFILE}" --name "${NAME}"
 }
 
 
@@ -144,23 +149,25 @@ stop_service() {
 # -----------------------------------------------------------------------------
 
 
-case ${1} in
+case "${1}" in
 
   force-reload|reload)
-    if [ ${RUNNING} = "false" ]; then
-      log_failure_msg ${NAME} "not running"
+    if [ "${RUNNING}" = false ]
+    then
+      log_failure_msg "${NAME}" "not running"
     else
-      log_daemon_msg ${NAME} "reloading configuration"
+      log_daemon_msg "${NAME}" "reloading configuration"
       reload_service || log_end_msg 1
       log_end_msg 0
     fi
   ;;
 
   restart)
-    if [ ${RUNNING} = "false" ]; then
-      log_failure_msg ${NAME} "not running"
+    if [ "${RUNNING}" = false ]
+    then
+      log_failure_msg "${NAME}" "not running"
     else
-      log_daemon_msg ${NAME} "restarting"
+      log_daemon_msg "${NAME}" "restarting"
       stop_service || log_end_msg 1
       sleep 0.1
       start_service || log_end_msg 1
@@ -169,34 +176,35 @@ case ${1} in
   ;;
 
   start)
-    if [ ${RUNNING} = "true" ]; then
-      log_success_msg ${NAME} "already started"
+    if [ "${RUNNING}" = true ]
+    then
+      log_success_msg "${NAME}" "already started"
     else
-      log_daemon_msg ${NAME} "starting"
+      log_daemon_msg "${NAME}" "starting"
       start_service || log_end_msg 1
       log_end_msg 0
     fi
   ;;
 
   status)
-    status_of_proc ${DAEMON} ${NAME} && exit 0 || exit ${?}
+    status_of_proc "${DAEMON}" "${NAME}" && exit 0 || exit "${?}"
   ;;
 
   stop)
-    if [ ${RUNNING} = "false" ]; then
-      log_success_msg ${NAME} "already stopped"
+    if [ "${RUNNING}" = false ]
+    then
+      log_success_msg "${NAME}" "already stopped"
     else
-      log_daemon_msg ${NAME} "stopping"
+      log_daemon_msg "${NAME}" "stopping"
       stop_service && log_end_msg 0 || log_end_msg 1
     fi
   ;;
 
   *)
-    echo "Usage: ${NAME} {force-reload|reload|restart|start|status|stop}" >&2
+    printf "Usage: %s {force-reload|reload|restart|start|status|stop}\n" "${NAME}" >&2
     exit 1
   ;;
 
 esac
-:
 
 exit 0

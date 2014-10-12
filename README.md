@@ -3,8 +3,7 @@
 
 ## Install
 ```
-git clone https://github.com/Fleshgrinder/nginx-sysvinit-script.git
-cp nginx-sysvinit-script/nginx /etc/init.d/nginx
+wget -O /etc/init.d/nginx https://raw.githubusercontent.com/Fleshgrinder/nginx-sysvinit-script/master/nginx
 chmod 0755 /etc/init.d/nginx
 chown root:root /etc/init.d/nginx
 ```
