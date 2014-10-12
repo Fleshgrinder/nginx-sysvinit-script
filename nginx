@@ -63,11 +63,8 @@
 # -----------------------------------------------------------------------------
 
 
-# The name of the service (must be the first variable).
+# The name of the daemon.
 NAME="nginx"
-
-# Absolute path to the executable.
-DAEMON="/usr/local/sbin/${NAME}"
 
 # Arguments that should be passed to the executable.
 DAEMON_ARGS=""
@@ -81,15 +78,17 @@ PIDFILE="/run/${NAME}.pid"
 # -----------------------------------------------------------------------------
 
 
-# Check return status of EVERY command
-set -e
-
-# Check if service is installed and recognized program.
-if ! type "${NAME}" 2>- 1>-
+# Check if daemon is a recognized program and get absolute path.
+DAEMON=$(type "${NAME}")
+if [ "${?}" -ne 0 ]
 then
   log_failure_msg "${NAME}" "not installed"
   exit 1
 fi
+DAEMON="${DAEMON##* }"
+
+# Check return status of EVERY command
+set -e
 
 # This script is only accessible for root (sudo).
 if [ "$(id -u)" -ne 0 ]
