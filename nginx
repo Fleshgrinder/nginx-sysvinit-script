@@ -152,7 +152,7 @@ start_service()
 ###
 stop_service()
 {
-    start-stop-daemon --stop --retry=TERM/30/KILL/5 ${SSD_OPTIONS}
+    start-stop-daemon --stop --signal QUIT --retry=TERM/30/KILL/5 ${SSD_OPTIONS}
 }
 
 
