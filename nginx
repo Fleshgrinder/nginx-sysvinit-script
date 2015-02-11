@@ -61,11 +61,12 @@ readonly NAME=nginx
 readonly DAEMON_ARGS=
 
 # Absolute path to the PID file.
-readonly PIDFILE="/run/${NAME}.pid"
+readonly PIDFILE=$(printf -- '%s/run/%s.pid' "$([ -d /run ] || printf -- /var)" "${NAME}")
 
 # Will be set by /lib/init/vars.sh
 VERBOSE=no
 
+exit 99
 
 # -----------------------------------------------------------------------------
 #                                                                   Error Codes
