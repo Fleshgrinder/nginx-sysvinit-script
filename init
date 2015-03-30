@@ -58,6 +58,9 @@ DAEMON_ARGS=
 # Absolute path to the printf executable.
 readonly PRINT=/usr/bin/printf
 
+# The path in which to search for the daemon.
+readonly PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
 # Absolute path to the PID file.
 PIDFILE=$(printf -- '%s/run/%s.pid' "$([ -d /run ] || printf -- /var)" "${NAME}")
 
