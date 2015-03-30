@@ -4,13 +4,11 @@
 
 ## Install
 ```shell
-wget -O /etc/init.d/nginx https://raw.githubusercontent.com/Fleshgrinder/nginx-sysvinit-script/master/nginx
-chmod 0755 /etc/init.d/nginx
-chown root:root /etc/init.d/nginx
-update-rc.d nginx defaults
+git clone https://github.com/Fleshgrinder/nginx-sysvinit-script.git
+cd nginx-sysvinit-script
+make
+#make uninstall
 ```
-
-You can also clone the repository and just execute the `install.sh` script.
 
 ## Usage
 You can use it via the `service` command or by directly invoking the shell script in `/etc/init.d`; what you like best. 
@@ -21,6 +19,7 @@ nginx res` just hit tab for auto-completion.
 service nginx force-reload
 service nginx reload
 service nginx restart
+service nginx try-restart
 service nginx start
 service nginx status
 service nginx stop
