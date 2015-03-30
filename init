@@ -192,7 +192,7 @@ stop_service()
 
 
 # Load the VERBOSE setting and other rcS variables plus any script defaults.
-for INCLUDE in /lib/init/vars.sh /etc/default/$(NAME)
+for INCLUDE in /lib/init/vars.sh /etc/default/${NAME}
     do [ -r "${INCLUDE}" ] && . "${INCLUDE}"
 done
 
