@@ -53,11 +53,11 @@ VERBOSE=no
 readonly EC_INVALID_ARGUMENT=2
 readonly EC_SUPER_USER_ONLY=4
 readonly EC_DAEMON_NOT_FOUND=5
-readonly EC_RELOADING_FAILED=95
-readonly EC_RESTART_STOP_FAILED=96
-readonly EC_RESTART_START_FAILED=97
-readonly EC_START_FAILED=98
-readonly EC_STOP_FAILED=99
+readonly EC_RELOADING_FAILED=150
+readonly EC_RESTART_STOP_FAILED=151
+readonly EC_RESTART_START_FAILED=152
+readonly EC_START_FAILED=153
+readonly EC_STOP_FAILED=154
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -224,7 +224,8 @@ readonly SSD_OPTIONS="--quiet --oknodo --pidfile "${PIDFILE}" --exec "${DAEMON}"
 #
 #   0 = Program is running
 #   1 = Program is not running and the PID file exists.
-#   3 = Porgram is not running.
+#   2 = Program is not running and a LOCK file exists.
+#   3 = Program is not running.
 #   4 = Unable to determine status.
 start-stop-daemon --status ${SSD_OPTIONS} 2>/dev/null 1>/dev/null
 readonly STATUS=$?
