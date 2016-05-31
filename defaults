@@ -1,13 +1,5 @@
 #!/bin/sh
 
-# ------------------------------------------------------------------------------
-# Defaults for nginx SysVinit script.
-#
-# @author Richard Fussenegger <fleshgrinder@users.noreply.github.com>
-# @copyright 2013-15 Richard Fussenegger
-# @license http://unlicense.org/ PD
-# ------------------------------------------------------------------------------
-
 # Canonical absolute path to the PID file.
 #
 # DEFAULT: /run/nginx.pid

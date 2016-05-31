@@ -11,8 +11,8 @@ make
 ```
 
 ## Usage
-You can use it via the `service` command or by directly invoking the shell script in `/etc/init.d`; what you like best. 
-Your shell will have auto-completion for the various keywords that are available, for instance if you type `service 
+You can use it via the `service` command or by directly invoking the shell script in `/etc/init.d`; what you like best.
+Your shell will have auto-completion for the various keywords that are available, for instance if you type `service
 nginx res` just hit tab for auto-completion.
 
 ```shell
@@ -27,6 +27,8 @@ service nginx stop
 
 ## Weblinks
 * [LSBInitScripts - Debian Wiki](https://wiki.debian.org/LSBInitScripts)
+* LSB Core Spec: [Init Script Actions: Exit Codes](http://refspecs.linuxfoundation.org/LSB_3.1.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html)
+* [Ubuntu pastebin](http://paste.ubuntu.com/6918156/)
 
 ## License
 > This is free and unencumbered software released into the public domain.

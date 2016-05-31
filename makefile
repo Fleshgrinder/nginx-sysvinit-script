@@ -1,13 +1,5 @@
 #!/bin/sh
 
-# ----------------------------------------------------------------------------------------------------------------------
-# Makefile for nginx SysVinit script.
-#
-# @author Richard Fussenegger <fleshgrinder@users.noreply.github.com>
-# @copyright 2013-15 Richard Fussenegger
-# @license http://unlicense.org/ PD
-# ----------------------------------------------------------------------------------------------------------------------
-
 SHELL = /bin/sh
 .SUFFIXES:
 
