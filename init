@@ -33,9 +33,6 @@ readonly NAME=nginx
 # Arguments that should be passed to the executable.
 DAEMON_ARGS=
 
-# Absolute path to the printf executable.
-readonly PRINT=/usr/bin/printf
-
 # The path in which to search for the daemon.
 readonly PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
@@ -44,9 +41,6 @@ PIDFILE=$(printf -- '%s/run/%s.pid' "$([ -d /run ] || printf -- /var)" "${NAME}"
 
 # Will be set by /lib/init/vars.sh
 VERBOSE=no
-
-# Absolute path to the which executable.
-readonly WHICH=/usr/bin/which
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -112,7 +106,7 @@ warn()
 # Print usage string.
 usage()
 {
-    "${PRINT}" 'Usage: %s {start|stop|restart|try-restart|reload|force-reload|status}\n' "$0"
+    printf 'Usage: %s {start|stop|restart|try-restart|reload|force-reload|status}\n' "$0"
 }
 
 ###
@@ -193,7 +187,7 @@ if [ -r "${INCLUDE}" ]
 then
     . "${INCLUDE}"
 else
-    "${PRINT}" '%s: unable to load LSB functions, cannot start service.\n' "${NAME}" 1>&2
+    printf '%s: unable to load LSB functions, cannot start service.\n' "${NAME}" 1>&2
     exit ${EC_DAEMON_NOT_FOUND}
 fi
 
@@ -210,7 +204,7 @@ fi
 readonly ACTION="$1"
 
 # Check if daemon is a recognized program and get absolute path.
-readonly DAEMON=$("${WHICH}" "${NAME}")
+readonly DAEMON=$(command -v "${NAME}")
 if [ ! -x "${DAEMON}" ]
 then
     if [ "${ACTION}" = 'stop' ]
