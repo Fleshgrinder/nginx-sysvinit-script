@@ -1,6 +1,6 @@
 # nginx SysVinit script
-[Linux Standard Base (LSB)](http://www.linuxfoundation.org/collaborate/workgroups/lsb) compliant [SysVinit]
-(http://freecode.com/projects/sysvinit) script for [nginx](http://nginx.org/).
+[Linux Standard Base (LSB)](http://www.linuxfoundation.org/collaborate/workgroups/lsb) compliant
+[SysVinit](http://freecode.com/projects/sysvinit) script for [nginx](http://nginx.org/).
 
 ## Install
 ```shell
